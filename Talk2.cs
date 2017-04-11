@@ -14,6 +14,7 @@ public class Talk2 : MonoBehaviour {
     public Text Output;
     public Text Subtitle;
 
+
     void Start()
     {
         changeTextScript = this.GetComponent<ChangeMenuText>();
@@ -46,6 +47,10 @@ public class Talk2 : MonoBehaviour {
 
     private void DictationRecognizer_DictationResult(string text, ConfidenceLevel confidence)
     {
+		
+		changeTextScript.Transcript.text += "User: ";
+		changeTextScript.Transcript.text += text;
+		changeTextScript.Transcript.text += "\r\n";
         Debug.LogFormat("Dictation result: {0}", text);
         outputQuestionAndResponseToUI(text, true);
 
@@ -63,6 +68,9 @@ public class Talk2 : MonoBehaviour {
             }
             else
                 Subtitle.text = "Megan: " + obj["SpeechText"].str + " [Audio to be added]";
+
+				changeTextScript.Transcript.text += Subtitle.text;
+				changeTextScript.Transcript.text += "\r\n";
            
             //megControl.changeAnimation("Thoughtful");
             //outputQuestionAndResponseToUI(obj["SpeechText"].str, false);
