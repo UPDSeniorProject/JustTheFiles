@@ -47,36 +47,36 @@ public class Talk2 : MonoBehaviour {
 
     private void DictationRecognizer_DictationResult(string text, ConfidenceLevel confidence)
     {
-		
-		changeTextScript.Transcript.text += "User: ";
-		changeTextScript.Transcript.text += text;
-		changeTextScript.Transcript.text += "\r\n";
-        Debug.LogFormat("Dictation result: {0}", text);
-        outputQuestionAndResponseToUI(text, true);
+		if (text == "skip") {
+			changeTextScript.callupdateText ("skip");
+		} else {
+			changeTextScript.Transcript.text += "User: ";
+			changeTextScript.Transcript.text += text;
+			changeTextScript.Transcript.text += "\r\n";
+			Debug.LogFormat ("Dictation result: {0}", text);
+			outputQuestionAndResponseToUI (text, true);
 
-        StartCoroutine(apiAcces.FindResponse(text, (result) =>
-        {
-            Debug.Log("In API coroutine");
-            JSONObject obj = new JSONObject(result);
-            changeTextScript.callupdateText(obj["SpeechText"].str);
-            Debug.LogFormat("Response: {0}", obj["SpeechText"].str);
-            Debug.LogFormat("Result: {0}", result);
-            Debug.LogFormat("AudioTrue value= ", changeTextScript.audioTrue);
-            if (changeTextScript.audioTrue == true)
-            {
-                Subtitle.text = "Megan: " + obj["SpeechText"].str;
-            }
-            else
-                Subtitle.text = "Megan: " + obj["SpeechText"].str + " [Audio to be added]";
+			StartCoroutine (apiAcces.FindResponse (text, (result) => {
+				Debug.Log ("In API coroutine");
+				JSONObject obj = new JSONObject (result);
+				changeTextScript.callupdateText (obj ["SpeechText"].str);
+				Debug.LogFormat ("Response: {0}", obj ["SpeechText"].str);
+				Debug.LogFormat ("Result: {0}", result);
+				Debug.LogFormat ("AudioTrue value= ", changeTextScript.audioTrue);
+				if (changeTextScript.audioTrue == true) {
+					Subtitle.text = "Megan: " + obj ["SpeechText"].str;
+				} else {
+					Subtitle.text = "Megan: " + obj ["SpeechText"].str + " [Audio to be added]";
+				}
+				
 
-				changeTextScript.Transcript.text += Subtitle.text;
-				changeTextScript.Transcript.text += "\r\n";
            
-            //megControl.changeAnimation("Thoughtful");
-            //outputQuestionAndResponseToUI(obj["SpeechText"].str, false);
+				//megControl.changeAnimation("Thoughtful");
+				//outputQuestionAndResponseToUI(obj["SpeechText"].str, false);
             
            
-        }));
+			}));
+		}
     }
 
     private void DictationRecognizer_DictationHypothesis(string text)

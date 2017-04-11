@@ -63,21 +63,21 @@ public class ChangeMenuText : MonoBehaviour {
         textCount = 0;
         Debug.Log(textCount);
         Menu.GetComponent<Text>().text = Text0.GetComponent<TextMesh>().text;
-		Transcript.text = "POTENTIAL SKIPPED MEGAN RESPONSES\r\n" +
-			"1) The pharmacist is refusing to fill my medication.\u00a0I'm trying to explain it to her, that I need my medication now.\r\n" +
-			"2) No, I don't have any weapons on me\r\n" +
-			"3) No, I have not taken any drugs today.\r\n" +
-			"4) No, I haven't had anything to drink either. I need my medication, is there anybody that can help me?\r\n" +
-			"5) Thank you, officer. I'm overwhelmed because this pharmacist isn't helping me refill my medication. I'm going through a panic attack because I don't have my medication, and it seems like nobody understands how serious this is!\r\n" +
-			"6) Okay, but I need my medication after. These panic attacks get so intense, I - I just don't feel in control without my pills.\r\n" +
-			"7) Yes, that's exactly it. Can you explain that to the pharmacist?\r\n" +
-			"8) I just can't get my medication otherwise! Look, all I need is one refill. That's it!\r\n" +
-			"9) Okay we can move to another room. But I am not leaving the pharmacy until I get my refill.\r\n" +
-			"10) For two years, but my panic attacks have never been this bad before.\r\n" +
-			"11) I just got a new job, and I don’t want to jeopardize it. If they see me like this, who knows what they'll think?\r\n" +
-			"12) I see a doctor from Meridian Clinic.\r\n" +
-			"13) Okay, we can call my doctor.\r\n" +
-			"14) I'll call someone.\r\n\r\n\r\nTRANSCRIPT\r\n";
+		Transcript.text = "USER SUGGESTIONS\r\n" +
+			"1) What seems to be the problem here?\r\n" +
+			"2) Are you carrying any weapons?\r\n" +
+			"3) Have you taken any drugs today?\r\n" +
+			"4) Are you under the influence of alcohol?\r\n" +
+			"5) I am officer _____ and I am here to help you.\r\n" +
+			"6) Take deep breaths.\r\n" +
+			"7) I understand you are feeling stressed.\r\n" +
+			"8) Remember, you cannot do anything illegal.\r\n" +
+			"9) Can we move to a more private locations?\r\n" +
+			"10) How long have you had anxiety?.\r\n" +
+			"11) What causes you're anxiety?\r\n" +
+			"12) Do you see a doctor?\r\n" +
+			"13) Call your doctor to set up an appointment.\r\n" +
+			"14) Call someone to take you home.\r\n\r\n\r\nTRANSCRIPT\r\n";
 
     }
     private void Update()
@@ -114,11 +114,12 @@ public class ChangeMenuText : MonoBehaviour {
     public IEnumerator updateText(string response) {
 		if (response == "skip") {
 			textCount++;
-			Transcript.text += "User skipped, see top of transcript for Megan's response number ";
+			Transcript.text += "User skipped, see USER SUGGESTION number ";
 			Transcript.text += textCount;
 			Transcript.text += "\r\n";
 			Debug.Log (textCount);
 		}
+
 
         if (textCount == 1 || response == "The pharmacist is refusing to fill my medication. I'm trying to explain it to her, that I need my medication now.")
         {
@@ -128,6 +129,8 @@ public class ChangeMenuText : MonoBehaviour {
             //Text0.SetActive(false);
             //Text1.SetActive(true);
             megTest.playAudio("prog1");
+			Transcript.text += "Megan: The pharmacist is refusing to fill my medication. I'm trying to explain it to her, that I need my medication now";
+			Transcript.text += "\r\n\r\n";
             yield return new WaitForSeconds(2);
             Menu.GetComponent<Text>().text = Text1.GetComponent<TextMesh>().text;
 
@@ -137,7 +140,8 @@ public class ChangeMenuText : MonoBehaviour {
 			textCount = 2;
             audioTrue = true;
             megTest.changeAnimation("Thoughtful");
-            
+			Transcript.text += "Megan: No, I don't have any weapons on me.";
+			Transcript.text += "\r\n\r\n";
 			megTest.playAudio("prog2");
             yield return new WaitForSeconds(2);
             Menu.GetComponent<Text>().text = Text2.GetComponent<TextMesh>().text;
@@ -148,7 +152,8 @@ public class ChangeMenuText : MonoBehaviour {
 			textCount = 3;
             audioTrue = true;
             megTest.changeAnimation("Thoughtful");
-          
+			Transcript.text += "Megan: No, I have not taken any drugs today.";
+			Transcript.text += "\r\n\r\n";
 			megTest.playAudio("prog3");
             yield return new WaitForSeconds(2);
             Menu.GetComponent<Text>().text = Text3.GetComponent<TextMesh>().text;
@@ -159,7 +164,8 @@ public class ChangeMenuText : MonoBehaviour {
 			textCount = 4;
             audioTrue = true;
             megTest.changeAnimation("Thoughtful");
-            
+			Transcript.text += "Megan: No, I haven't had anything to drink either. I need my medication, is there anybody that can help me?";
+			Transcript.text += "\r\n\r\n";
 			megTest.playAudio("prog4");
             yield return new WaitForSeconds(2);
 			Menu.GetComponent<Text>().text = Text4.GetComponent<TextMesh>().text;
@@ -170,7 +176,8 @@ public class ChangeMenuText : MonoBehaviour {
 			textCount = 5;
             audioTrue = true;
             megTest.changeAnimation("Happy");
-           
+			Transcript.text += "Megan: Thank you, officer. I'm overwhelmed because this pharmacist isn't helping me refill my medication. I'm going through a panic attack because I don't have my medication, and it seems like nobody understands how serious this is!";
+			Transcript.text += "\r\n\r\n";
 			megTest.playAudio("prog5");
             yield return new WaitForSeconds(2);
             Menu.GetComponent<Text>().text = Text5.GetComponent<TextMesh>().text;
@@ -181,7 +188,8 @@ public class ChangeMenuText : MonoBehaviour {
 			textCount = 6;
             audioTrue = true;
             megTest.changeAnimation("Thoughtful");
-            
+			Transcript.text += "Megan: Okay, but I need my medication after. These panic attacks get so intense, I - I just don't feel in control without my pills.";
+			Transcript.text += "\r\n\r\n";
 			megTest.playAudio("prog6");
             yield return new WaitForSeconds(2);
             Menu.GetComponent<Text>().text = Text6.GetComponent<TextMesh>().text;
@@ -190,6 +198,8 @@ public class ChangeMenuText : MonoBehaviour {
         {
 			textCount = 7;
             audioTrue = true;
+			Transcript.text += "Megan: Yes, that's exactly it. Can you explain that to the pharmacist?";
+			Transcript.text += "\r\n\r\n";
             megTest.playAudio("prog7");
             yield return new WaitForSeconds(2);
             Menu.GetComponent<Text>().text = Text7.GetComponent<TextMesh>().text;
@@ -198,6 +208,8 @@ public class ChangeMenuText : MonoBehaviour {
         {
 			textCount = 8;
             audioTrue = true;
+			Transcript.text += "Megan: I just can't get my medication otherwise! Look, all I need is one refill. That's it!";
+			Transcript.text += "\r\n\r\n";
             megTest.playAudio("prog8");
             yield return new WaitForSeconds(2);
             Menu.GetComponent<Text>().text = Text8.GetComponent<TextMesh>().text;
@@ -207,6 +219,8 @@ public class ChangeMenuText : MonoBehaviour {
         {
 			textCount = 9;
             audioTrue = true;
+			Transcript.text += "Megan: Okay we can move to another room. But I am not leaving the pharmacy until I get my refill.";
+			Transcript.text += "\r\n\r\n";
             megTest.playAudio("prog9");
 
             StartCoroutine("Pause", 6);
@@ -216,6 +230,8 @@ public class ChangeMenuText : MonoBehaviour {
         {
 			textCount = 10;
             audioTrue = true;
+			Transcript.text += "Megan: For two years, but my panic attacks have never been this bad before.";
+			Transcript.text += "\r\n\r\n";
             megTest.playAudio("prog10");
             yield return new WaitForSeconds(2);
             Menu.GetComponent<Text>().text = Text10.GetComponent<TextMesh>().text;
@@ -224,6 +240,8 @@ public class ChangeMenuText : MonoBehaviour {
         {
 			textCount = 11;
             audioTrue = true;
+			Transcript.text += "Megan: I just got a new job, and I don’t want to jeopardize it. If they see me like this, who knows what they'll think?";
+			Transcript.text += "\r\n\r\n";
             megTest.playAudio("prog11");
             yield return new WaitForSeconds(2);
             Menu.GetComponent<Text>().text = Text11.GetComponent<TextMesh>().text;
@@ -233,6 +251,8 @@ public class ChangeMenuText : MonoBehaviour {
 			textCount=12;
             //call megan's doctor
             audioTrue = true;
+			Transcript.text += "Megan: I see a doctor from Meridian Clinic.";
+			Transcript.text += "\r\n\r\n";
             megTest.playAudio("prog12");
             yield return new WaitForSeconds(2);
             Menu.GetComponent<Text>().text = Text12.GetComponent<TextMesh>().text;
@@ -240,7 +260,8 @@ public class ChangeMenuText : MonoBehaviour {
 		else if (textCount == 13 || response == "Okay, we can call my doctor.")
         {
 			textCount = 13;
-
+			Transcript.text += "Megan: Okay, we can call my doctor.";
+			Transcript.text += "\r\n\r\n";
             audioTrue = true;
             megTest.playAudio("prog13");
             yield return new WaitForSeconds(2);
@@ -252,8 +273,10 @@ public class ChangeMenuText : MonoBehaviour {
             //end scene after this audio
             audioTrue = true;
             megTest.playAudio("prog14");
+			Transcript.text += "Megan: I'll call someone.";
+			Transcript.text += "\r\n\r\n";
             yield return new WaitForSeconds(2);
-			Transcript.text += "MEGAN ARRESTED END SCENE";
+			Transcript.text += "SITUATION DEESCALATED \r\nEND OF SIMULATION";
 			transcriptOutput = Transcript.text;
 			System.IO.File.WriteAllText(DesktopPath,transcriptOutput);
             Fade(true, 3);
@@ -305,7 +328,7 @@ public class ChangeMenuText : MonoBehaviour {
             Fade(true, 3);
             endScreen.texture = endingImages[0];
             endScreen.enabled = true;
-			Transcript.text += "MEGAN TAKEN TO HOSPITAL END SCENE";
+			Transcript.text += "MEGAN TAKEN TO HOSPITAL \r\nEND OF SIMULATION";
 			transcriptOutput = Transcript.text;
 			System.IO.File.WriteAllText(DesktopPath,transcriptOutput);
 
@@ -320,7 +343,7 @@ public class ChangeMenuText : MonoBehaviour {
             Fade(true,3);
             endScreen.texture = endingImages[1];
             endScreen.enabled = true;
-			Transcript.text += "MEGAN ARRESTED END SCENE";
+			Transcript.text += "MEGAN ARRESTED \r\nEND OF SIMULATION";
 			transcriptOutput = Transcript.text;
 			System.IO.File.WriteAllText(DesktopPath,transcriptOutput);
 			//if no restore menu
